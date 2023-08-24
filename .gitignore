@@ -28,8 +28,6 @@ replay_pid*
 # Project gen files
 .idea
 .allure/
-.gragle/
-.mvn
 allure-results/
 gradle/
 build/

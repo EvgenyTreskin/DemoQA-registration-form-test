@@ -2,16 +2,18 @@ package demoqa;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 public abstract class BaseTest {
 
-    final static String URL = "https://demoqa.com/text-box";
 
-    @BeforeEach
-    public void init() {
+
+    @BeforeAll
+    static public void init() {
         setUp();
     }
 
@@ -20,11 +22,13 @@ public abstract class BaseTest {
         Selenide.closeWebDriver();
     }
 
-    public void setUp() {
+    public static void setUp() {
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
         Configuration.browserSize = "960x1080";
+        Configuration.baseUrl = "https://demoqa.com";
         Configuration.headless = false;
         Configuration.pageLoadStrategy = "eager";
+        SelenideLogger.addListener("AllureSelenide", new  AllureSelenide());
     }
 }

@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'io.qameta.allure' version '2.11.2'
-
+    id 'org.gradle.test-retry' version '1.5.4'
 }
 repositories {
     mavenCentral()
@@ -13,15 +13,14 @@ dependencies {
             'org.slf4j:slf4j-simple:2.0.7',
             'io.github.bonigarcia:webdrivermanager:5.5.0',
             'io.qameta.allure:allure-selenide:2.23.0',
-//            'org.aspectj:aspectjweaver:1.9.19',
-//            'io.qameta.allure:allure-junit5:2.23.0',
-//            'io.qameta.allure:allure-commandline:2.23.1',
-//            'io.qameta.allure:allure-assertj:2.23.0',
-//            'io.qameta.allure:allure-rest-assured:2.23.0',
-//            'io.qameta.allure:allure-java-commons:2.23.0'
-
-    )
+     )
 }
 test {
     useJUnitPlatform()
+    retry{
+        //also we can use @RetryTest() annotation, but we must do it in each test
+        maxRetries = 3
+        maxFailures = 30
+        failOnPassedAfterRetry = true
+    }
 }

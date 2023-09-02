@@ -17,6 +17,8 @@ public class TestBoxTests extends BaseTest {
     private static final String CURRENT_ADDRESS = "Some current address 1";
     private static final String PERMANENT_ADDRESS = "Some permanent address 2";
 
+
+    //also we can use @RetryTest() annotation only for Flaky test
     @Test
     void fillFormTest(){
 

@@ -29,6 +29,6 @@ public abstract class BaseTest {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.headless = false;
         Configuration.pageLoadStrategy = "eager";
-        SelenideLogger.addListener("AllureSelenide", new  AllureSelenide());
+        SelenideLogger.addListener("AllureSelenide", new  AllureSelenide()) ;
     }
 }
